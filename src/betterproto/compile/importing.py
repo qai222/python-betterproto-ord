@@ -61,6 +61,7 @@ def get_type_reference(
             return "datetime"
 
     source_package, source_type = parse_source_type_name(source_type)
+    source_type = source_type.split(".")[-1]  # make generated class names consistent with message names
 
     current_package: List[str] = package.split(".") if package else []
     py_package: List[str] = source_package.split(".") if source_package else []

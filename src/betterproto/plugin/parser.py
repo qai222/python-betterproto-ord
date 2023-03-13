@@ -72,6 +72,7 @@ def generate_code(request: CodeGeneratorRequest) -> CodeGeneratorResponse:
 
     plugin_options = request.parameter.split(",") if request.parameter else []
     response.supported_features = CodeGeneratorResponseFeature.FEATURE_PROTO3_OPTIONAL
+    # plugin_options.append("pydantic_dataclasses")  # use this to turn on pydantic option
 
     request_data = PluginRequestCompiler(plugin_request_obj=request)
     # Gather output packages
