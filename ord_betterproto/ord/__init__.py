@@ -100,6 +100,18 @@ class ReactionRoleType(betterproto.Enum):
     undesired.
     """
 
+    BYPRODUCT = 9
+    """
+    When there is one intended chemical equation: - Set
+    `is_desired_product=True` to indicate a desired product. - Use BYPRODUCT to
+    indicate a chemical species that is an expected result of the reaction but
+    is not the product of interest. - Use SIDE_PRODUCT to indicate the product
+    of a side reaction. - See https://doi.org/10.1021/op300317g for a
+    discussion of these terms.
+    """
+
+    SIDE_PRODUCT = 10
+
 
 class CompoundPreparationType(betterproto.Enum):
     UNSPECIFIED = 0
@@ -1602,6 +1614,15 @@ class ReactionProvenance(betterproto.Message):
     """
     Container for arbitrary reaction metadata; e.g., an internal project
     identifier.
+    """
+
+    is_mined: Optional[bool] = betterproto.bool_field(
+        10, optional=True, group="_is_mined"
+    )
+    """
+    Set to true for programmatically extracted data; e.g., text mining from
+    patents. Set to false for manually curated data or template enumeration
+    from structured data (like a spreadsheet).
     """
 
 
